@@ -2,11 +2,11 @@
 
 void main() {
 	int mat[6][6] = { {6,  3,  5,  7,  4,  5},
-			  {4,  2,  4,  6,  3,  4},
-			  {4,  1,  4,  5,  2,  3}, 
-		          {4,  0,  3,  4,  1,  3}, 
-		          {3,  -1, 2,  4,  0,  1},
-			  {2,  -2, 1,  3,  -1,  0} };
+				      {4,  2,  4,  6,  3,  4},
+					  {4,  1,  4,  5,  2,  3}, 
+		              {4,  0,  3,  4,  1,  3}, 
+		              {3,  -1, 2,  4,  0,  1},
+					  {2,  -2, 1,  3,  -1,  0} };
 	
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 6; j++) {
@@ -14,12 +14,14 @@ void main() {
 		}
 		printf_s("\n");
 	}
+	int search;
 	printf_s("\n");
-	printf_s("Search 4 \n \n");
+	printf_s("Input number is : ");
+	scanf_s("%d", &search);
 	printf_s("Program 1 \n");
 
 	for (int j = 0; j < 6; j++) {
-		int search = 4;  //поиск этого элемента
+		//int search = 4;  //поиск этого элемента
 		int average = 0; //cредний элемент  
 		int first = 0;
 		int last = 5;
