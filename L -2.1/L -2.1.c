@@ -55,7 +55,7 @@ void main() {
 		while (first < last) {
 			average = first + (last - first) / 2;
 			if (5 >= mat[average][j]) {
-				if (0 == mat[average][j] || 1 == mat[average][j] || 2 == mat[average][j] || 3 == mat[average][j] || 4 == mat[average][j] || 5  == mat[average][j]) {
+				if (0 <= mat[average][j] && 5 >= mat[average][j]) {
 					peremena = 1;
 					goto breakAll;
 				}
