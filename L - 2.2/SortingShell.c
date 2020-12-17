@@ -6,7 +6,8 @@ int main(){
 	
 	int n = 8;
 	float mat [8][8];
-	for (int i = 0; i < n; i++) {
+
+	for (int i = 0; i < n; i++) { // Рандомное заполнение
 		for (int j = 0; j < n; j++) {
 			mat[i][j] = (100 +(rand()%1000))*0.01;
 			printf_s("%.2f ", mat[i][j]);
@@ -14,7 +15,7 @@ int main(){
 		printf_s("\n");
 	}
 	
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) { // Алгоритм Шелла
 		int step = n / 2;
 		for (int j = 0; j < n + 1; j++) {
 			for (int count = 0; count < j ; count++) {
