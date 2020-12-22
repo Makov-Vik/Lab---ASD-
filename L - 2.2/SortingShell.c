@@ -2,8 +2,8 @@
 #include <time.h>
 #include <conio.h>
 
-void shell(float mat[8][8], int n /*, int i, int y*/) {
-	for (int i = 0; i < n; i++) { // Алгоритм Шелла
+void shell(float mat[8][8], int n) {// Shell Algoritm
+	for (int i = 0; i < n; i++) { 
 		int step = n / 2;
 		for (int j = 0; j < n + 1; j++) {
 			for (int count = 0; count < j; count++) {
@@ -22,30 +22,52 @@ void shell(float mat[8][8], int n /*, int i, int y*/) {
 	}
 }
 
-int main() {
+void print(float mat[8][8], int n) {// Output
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			printf_s("%.2f ", mat[i][j]);
+		}
+		printf_s("\n");
+	}
+}
+void main() {
 	float mat[8][8];
 	int n = 8;
 
-	for (int i = 0; i < n; i++) { // Рандомное заполнение
+	printf_s("1. Before sorting\n");
+	for (int i = 0; i < n; i++) { // Random filling
 		for (int j = 0; j < n; j++) {
 			mat[i][j] = (100 + (rand() % 1000)) * 0.01;
 			printf_s("%.2f ", mat[i][j]);
 		}
 		printf_s("\n");
 	}
+	printf_s("\nAfter sorting:\n");
+	shell(mat, n); // sorting
+	print(mat, n); // output
 
-	shell(mat, n);
-	printf_s("%d", mat);
-
-	printf_s("\n");
-
-	
-
-	for (int i = 0; i < n; i++) { // Вывод
+	printf_s("\n2. Before sorting\n");
+	for (int i = 0; i < n; i++) { // Ordered array from low to high
 		for (int j = 0; j < n; j++) {
+			mat[i][j] = (i) + (j);
 			printf_s("%.2f ", mat[i][j]);
 		}
 		printf_s("\n");
 	}
-	return 0;
+	printf_s("\nAfter sorting:\n");
+	shell(mat, n); // sorting
+	print(mat, n); // output
+
+	printf_s("\n3. Before sorting\n"); // Ordered array from high to low
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			mat[i][j] = (8 - i)+(8 - j);
+			printf_s("%.2f ", mat[i][j]);
+		}
+		printf_s("\n");
+	}
+	printf_s("\nAfter sorting:\n");
+	shell(mat, n); // sorting
+	print(mat, n); // output
 }
+
