@@ -35,7 +35,7 @@ float recursion3(int number, float F, int i, float sum) {
 	if (i < length) {
 		i++;
 		F = (F * number * number) / (4 * i * i + 2 * i);
-		if (i == 5) {
+		if (i == length) {
 			sum += F;
 			printf_s("%d: %f\n", i, F);
 			return sum;
