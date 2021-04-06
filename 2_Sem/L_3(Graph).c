@@ -21,10 +21,29 @@ int** randmatrix(float k) {
             if (num < 1) element = 0;
             else element = 1;
             matrix[i][j] = element;
-            printf("%d ", element);
+            printf("%d ", matrix[i][j]);
         }
         printf("\n");
     }
+
+    printf("\n");
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (matrix[i][j] == 1) matrix[j][i] = 1;
+            //printf("%d ", element);
+        }
+        //printf("\n");
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            //if (matrix[i][j] == 1) matrix[j][i] = 1;
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
     return matrix;
 }
 int main() {
@@ -33,33 +52,33 @@ int main() {
 }
 
 int A[N][N] = {
-        {1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0},
-        {0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0},
-        {0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-        {0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1},
-        {0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
-        {0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-        {0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-        {0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}
+    { 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, },
+    { 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, },
+    { 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, },
+    { 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, },
+    { 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, },
+    { 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, },
+    { 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, },
+    { 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, },
+    { 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, },
+    { 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, },
+    { 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, },
+    { 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, },
 };
 
 int simA[N][N] = {   // if A[i][j] == 1, then B[j][i] = 1
-        {1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1},
-        {0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0},
-        {0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0},
-        {1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1},
-        {0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0},
-        {0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
-        {1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-        {0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0},
-        {1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0},
-        {0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0},
-        {1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1},
+    { 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, },
+    { 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, },
+    { 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, },
+    { 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, },
+    { 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, },
+    { 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, },
+    { 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, },
+    { 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, },
+    { 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, },
+    { 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, },
+    { 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, },
+    { 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, },
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow)
@@ -168,7 +187,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
                     }
                     else if (A[start][end] == 1 && A[end][start] == 1) {
                         MoveToEx(hdc, xPos[start], yPos[start], NULL);
-                        LineTo(hdc, xPos[end] + xDif / 2 + (20 * divine), yPos[end] + yDif / 2 + (20 * divine));
                         LineTo(hdc, xPos[end], yPos[end]);
                         arrow(xPos[end] + dx, yPos[end] + dy, dx, dy, hdc);
                         divine = -divine;
@@ -211,9 +229,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
         float koef1;
         HPEN BluePen1 = CreatePen(PS_SOLID, 2, RGB(50, 0, 255));
         HPEN BlackPen1 = CreatePen(PS_SOLID, 1, RGB(20, 20, 5));
+
         SelectObject(hdc, BlackPen1);
+
         for (int start = 0; start < N; start++) {
-            for (int end = 0; end < N; end++) {
+            for (int end = start; end < N; end++) {
                 if (simA[start][end] == 1) {
                     xDif1 = xPos1[start] - xPos1[end];
                     yDif1 = yPos1[start] - yPos1[end];
@@ -230,14 +250,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
                     }
                     else if (simA[start][end] == 1 && simA[end][start] == 1) {
                         MoveToEx(hdc, xPos1[start], yPos1[start], NULL);
-                        LineTo(hdc, xPos1[end] + xDif1 / 2 + (20 * divine1), yPos1[end] + yDif1 / 2 + (20 * divine1));
                         LineTo(hdc, xPos1[end], yPos1[end]);
                         divine1 = -divine1;
                     }
                 }
             }
         }
-
 
         SelectObject(hdc, BluePen);
         for (int i = 0; i < N; i++) {
