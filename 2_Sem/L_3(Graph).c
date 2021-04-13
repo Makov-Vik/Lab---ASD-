@@ -43,13 +43,14 @@ int** randmatrix(float k) {
         printf("\n");
     }
 
-
     return matrix;
 }
 int main() {
     int** A = randmatrix(1.0 - 0 * 0.02 - 0 * 0.005 - 0.25);
     return 0;
 }
+
+//=========================================================
 
 int A[N][N] = {
     { 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, },
@@ -152,10 +153,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
         int dx = 16, dy = 16, dtx = 5;  // R of Circle vertex and bias number
         int R = 250;                    // R of Circle graph
         int step = 0;  // step of vertex by circle
-        int Center1_X = 900, Center1_Y = 300;
+        int Center1_X = 300, Center1_Y = 300;
 
         HPEN BluePen = CreatePen(PS_SOLID, 2, RGB(50, 0, 255));
         HPEN BlackPen = CreatePen(PS_SOLID, 1, RGB(20, 20, 5));
+        HPEN GreenPen = CreatePen(PS_SOLID, 1, RGB(41, 106, 72));
+        HPEN Dark_BluePen = CreatePen(PS_SOLID, 1, RGB(41, 106, 250));
+        HPEN Light_PurplePen = CreatePen(PS_SOLID, 1, RGB(232, 106, 250));
+        HPEN WitePen = CreatePen(PS_SOLID, 1, RGB(232, 246, 250));
+        HPEN REDPen = CreatePen(PS_SOLID, 1, RGB(250, 17, 37));
 
         //vertex 
         for (int vertex = 0; vertex < N; vertex++) {
@@ -163,14 +169,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
             yPos[vertex] = Center1_Y - R * sin(step * PI / 180);
             step += 360 / N;
         }
+        int Pen[6] = { BlackPen, GreenPen, Dark_BluePen, Light_PurplePen, WitePen, REDPen };
+        int number = 0;
+
+//=========================================================
 
         int radius = 16, divine = 1, xDif, yDif;
         float koef;
 
-        SelectObject(hdc, BlackPen);
-
         for (int start = 0; start < N; start++) {
             for (int end = 0; end < N; end++) {
+
+                SelectObject(hdc, Pen[number]);
+
                 if (A[start][end] == 1) {
                     xDif = xPos[start] - xPos[end];
                     yDif = yPos[start] - yPos[end];
@@ -187,6 +198,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
                     }
                     else if (A[start][end] == 1 && A[end][start] == 1) {
                         MoveToEx(hdc, xPos[start], yPos[start], NULL);
+                        LineTo(hdc, xPos[end] + xDif / 2 + (6 * divine), yPos[end] + yDif / 4 + (6 * divine)); // ========= переделал эту строку по сравнению с протоколом
                         LineTo(hdc, xPos[end], yPos[end]);
                         arrow(xPos[end] + dx, yPos[end] + dy, dx, dy, hdc);
                         divine = -divine;
@@ -203,22 +215,33 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
                             dx = xDif / 2 / koef;
                             dy = yDif / koef;
                         }
+                        
                         LineTo(hdc, xPos[end], yPos[end]);
                         arrow(xPos[end] + dx, yPos[end] + dy, dx, dy, hdc);
                     }
                 }
             }
+            if (number == 5) number = 0;
+            else number++;
         }
+ 
+        SelectObject(hdc, BluePen);
+        for (int i = 0; i < N; i++) {
+            Ellipse(hdc, xPos[i] - radius, yPos[i] - radius, xPos[i] + radius, yPos[i] + radius);
+            TextOut(hdc, xPos[i] - dtx, yPos[i] - 8, ellipseName[i], 1);
+        }
+
+//=========================================================
 
         int xPos1[12];
         int yPos1[12];
         int startCoordx1 = 20;
         int startCoordy1 = 560;
-        char* ellipseName1[12] = { "1", "2", "3", "4", "5", "6", "7", "8", "9","A", "B", "C" };
+        //char* ellipseName1[12] = { "1", "2", "3", "4", "5", "6", "7", "8", "9","A", "B", "C" };
 
         int R2 = 250;
         int step1 = 0;
-        int Center2_X = 300, Center2_Y = 300;
+        int Center2_X = 900, Center2_Y = 300;
         for (int vertex = 0; vertex < N; vertex++) {
             xPos1[vertex] = Center2_X + R2 * cos(step1 * PI / 180);
             yPos1[vertex] = Center2_Y - R2 * sin(step1 * PI / 180);
@@ -227,10 +250,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
         int dtx1 = 5, radius1 = 16, divine1 = 1, dx1, dy1, xDif1, yDif1;
         float koef1;
-        HPEN BluePen1 = CreatePen(PS_SOLID, 2, RGB(50, 0, 255));
-        HPEN BlackPen1 = CreatePen(PS_SOLID, 1, RGB(20, 20, 5));
+        //HPEN BluePen1 = CreatePen(PS_SOLID, 2, RGB(50, 0, 255));
+        //HPEN BlackPen1 = CreatePen(PS_SOLID, 1, RGB(20, 20, 5));
 
-        SelectObject(hdc, BlackPen1);
+        SelectObject(hdc, BlackPen);
 
         for (int start = 0; start < N; start++) {
             for (int end = start; end < N; end++) {
@@ -259,14 +282,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
         SelectObject(hdc, BluePen);
         for (int i = 0; i < N; i++) {
-            Ellipse(hdc, xPos[i] - radius, yPos[i] - radius, xPos[i] + radius, yPos[i] + radius);
-            TextOut(hdc, xPos[i] - dtx, yPos[i] - 8, ellipseName[i], 1);
-        }
-
-        SelectObject(hdc, BluePen1);
-        for (int i = 0; i < N; i++) {
             Ellipse(hdc, xPos1[i] - radius1, yPos1[i] - radius1, xPos1[i] + radius1, yPos1[i] + radius1);
-            TextOut(hdc, xPos1[i] - dtx1, yPos1[i] - 8, ellipseName1[i], 1);
+            TextOut(hdc, xPos1[i] - dtx1, yPos1[i] - 8, ellipseName[i], 1);
         }
 
         EndPaint(hWnd, &ps);
