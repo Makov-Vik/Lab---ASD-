@@ -121,7 +121,7 @@ void BFS(HDC hdc, int xPos[N], int yPos[N], char* ellipseName[N], int A[N][N], i
         }
         item++;
     }
-    printf_s("\Tree Matrix:\n");
+    printf_s("Tree Matrix:\n");
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             printf_s("%d ", treeMatrix[i][j]);
@@ -184,7 +184,7 @@ void DFS(HDC hdc, int xPos[N], int yPos[N], char* ellipseName[N], int A[N][N], i
         else item++;
     }
 
-    printf_s("\Tree Matrix:\n");
+    printf_s("Tree Matrix:\n");
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             printf_s("%d ", treeMatrix[i][j]);
